@@ -4,179 +4,194 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alberto Álvarez Álvarez</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400&family=Playfair+Display:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg: #fdfdfd;
-            --text: #1a1a1a;
-            --light-text: #666;
-            --accent: #888;
-            --spacing: 80px;
+            --bg-color: #f7f7f7; /* Gris muy suave, como el de Felicia */
+            --sidebar-width: 300px;
+            --text-main: #1a1a1a;
+            --text-muted: #666;
+            --accent: #3b5998; /* Azul sutil para enlaces */
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
 
         body {
             font-family: 'Inter', sans-serif;
-            background-color: var(--bg);
-            color: var(--text);
-            line-height: 1.6;
-            padding-bottom: 100px;
-        }
-
-        .container { max-width: 1000px; margin: 0 auto; padding: 0 40px; }
-
-        /* Navegación Estilo Minimal */
-        nav {
-            padding: 50px 0;
+            background-color: var(--bg-color);
+            color: var(--text-main);
             display: flex;
-            justify-content: space-between;
-            align-items: baseline;
+            min-height: 100vh;
         }
 
-        .logo { 
-            font-family: 'Playfair Display', serif; 
-            font-size: 1.4rem; 
-            text-decoration: none; 
-            color: var(--text);
+        /* BARRA LATERAL FIJA (LEFT COLUMN) */
+        aside {
+            width: var(--sidebar-width);
+            height: 100vh;
+            position: fixed;
+            left: 0;
+            top: 0;
+            padding: 60px 40px;
+            display: flex;
+            flex-direction: column;
+            border-right: 1px solid #e5e5e5;
         }
 
-        nav ul { display: flex; list-style: none; gap: 30px; }
-        nav a { text-decoration: none; color: var(--light-text); font-size: 0.9rem; transition: 0.3s; }
-        nav a:hover { color: var(--text); }
-
-        /* Sección Hero (Intro) */
-        .hero {
-            display: grid;
-            grid-template-columns: 1.2fr 0.8fr;
-            gap: 60px;
-            align-items: center;
-            margin-bottom: var(--spacing);
-        }
-
-        .hero-text h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.8rem;
-            line-height: 1.1;
-            margin-bottom: 25px;
-            font-weight: 600;
-        }
-
-        .hero-text p { font-size: 1.1rem; color: var(--light-text); margin-bottom: 20px; }
-
-        .profile-wrapper img {
-            width: 100%;
-            height: auto;
-            filter: grayscale(100%);
-            transition: filter 0.5s;
-        }
-        .profile-wrapper img:hover { filter: grayscale(0%); }
-
-        /* Secciones de Contenido */
-        section { margin-bottom: var(--spacing); }
-        
-        h2 {
-            font-family: 'Playfair Display', serif;
+        aside h1 {
+            font-family: 'Crimson Pro', serif;
             font-size: 1.8rem;
-            margin-bottom: 40px;
+            line-height: 1.2;
+            margin-bottom: 10px;
             font-weight: 600;
-            border-top: 1px solid #eee;
-            padding-top: 20px;
         }
 
-        /* Listados */
-        .item {
-            display: grid;
-            grid-template-columns: 100px 1fr;
+        aside .title {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            line-height: 1.4;
+        }
+
+        /* Menú de navegación vertical */
+        nav ul { list-style: none; }
+        nav ul li { margin-bottom: 15px; }
+        nav ul li a {
+            text-decoration: none;
+            color: var(--text-main);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+        nav ul li a:hover { color: var(--accent); }
+
+        /* CONTENIDO SCROLLABLE (RIGHT COLUMN) */
+        main {
+            margin-left: var(--sidebar-width);
+            width: calc(100% - var(--sidebar-width));
+            padding: 60px 10%;
+        }
+
+        section {
+            max-width: 750px;
+            margin-bottom: 80px;
+        }
+
+        h2 {
+            font-family: 'Crimson Pro', serif;
+            font-size: 1.5rem;
             margin-bottom: 30px;
-            font-size: 0.95rem;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #e5e5e5;
         }
 
-        .year { color: var(--accent); font-weight: 400; }
-        .details strong { color: var(--text); font-weight: 500; }
-        .details em { color: var(--light-text); font-family: 'Playfair Display', serif; }
+        p {
+            font-size: 1rem;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            color: #333;
+        }
 
-        .contact-links { margin-top: 30px; display: flex; gap: 20px; }
-        .contact-links a { color: var(--text); font-weight: 500; text-decoration: underline; text-underline-offset: 4px; font-size: 0.9rem; }
+        /* Estilo de las publicaciones */
+        .pub-item {
+            margin-bottom: 25px;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
 
-        @media (max-width: 768px) {
-            .hero { grid-template-columns: 1fr; }
-            .hero-text h1 { font-size: 2.2rem; }
-            .item { grid-template-columns: 1fr; gap: 5px; }
-            nav { flex-direction: column; gap: 20px; }
+        .pub-item strong { font-weight: 600; }
+        .pub-item em { font-family: 'Crimson Pro', serif; font-size: 1.1rem; }
+
+        /* Imagen de perfil opcional en el sidebar */
+        .profile-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 30px;
+            filter: grayscale(100%);
+        }
+
+        /* Adaptación a móviles */
+        @media (max-width: 900px) {
+            body { flex-direction: column; }
+            aside {
+                width: 100%;
+                height: auto;
+                position: relative;
+                padding: 40px 20px;
+                border-right: none;
+                border-bottom: 1px solid #e5e5e5;
+            }
+            main {
+                width: 100%;
+                margin-left: 0;
+                padding: 40px 20px;
+            }
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
+    <aside>
+        <h1>Alberto Álvarez Álvarez</h1>
+        <p class="title">Communication scholar specializing in digital media, social media platforms and online polarization.</p>
+        
         <nav>
-            <a href="#" class="logo">Alberto Álvarez Álvarez</a>
             <ul>
                 <li><a href="#about">About</a></li>
                 <li><a href="#publications">Publications</a></li>
                 <li><a href="#teaching">Teaching</a></li>
+                <li><a href="mailto:Alberto.alvarez.a@me.com">Contact</a></li>
             </ul>
         </nav>
+    </aside>
 
-        <section id="about" class="hero">
-            <div class="hero-text">
-                <h1>Communication scholar specializing in digital media and polarization.</h1>
-                <p>Soy investigador enfocado en cómo las plataformas digitales moldean el discurso público y las narrativas mediáticas[cite: 8, 9].</p>
-                <p>Actualmente desarrollo mi doctorado entre la <strong>Universidad Rey Juan Carlos</strong> y la <strong>Vrije Universiteit Amsterdam</strong>[cite: 12, 14].</p>
-                
-                <div class="contact-links">
-                    <a href="mailto:Alberto.alvarez.a@me.com">Email</a>
-                    <a href="https://orcid.org/0009-0005-4127-1223">ORCID</a>
-                </div>
-            </div>
-            <div class="profile-wrapper">
-                <img src="foto-perfil.jpg" alt="Alberto Álvarez">
-            </div>
+    <main>
+        <section id="about">
+            <h2>About Me</h2>
+            <p>
+                My research focuses on how digital platforms shape public discourse and media narratives, using methods such as sentiment analysis and digital discourse analysis[cite: 9]. 
+            </p>
+            <p>
+                I am currently a Ph.D. candidate at <strong>Universidad Rey Juan Carlos</strong> and the <strong>Vrije Universiteit Amsterdam</strong>, where I investigate polarization in sports environments[cite: 12, 13, 14].
+            </p>
         </section>
 
         <section id="publications">
             <h2>Selected Publications</h2>
             
-            <div class="item">
-                <div class="year">2026</div>
-                <div class="details">
-                    <strong>Álvarez-Álvarez, A.</strong> & Kerkhof, P. "Anti-racism football campaigns in Spain and England: public discourse and polarization on X"[cite: 28].
-                </div>
+            <div class="pub-item">
+                <strong>Álvarez-Álvarez, A.</strong> & Kerkhof, P. (2026). "Anti-racism football campaigns in Spain and England: public discourse and polarization on X"[cite: 28].
             </div>
 
-            <div class="item">
-                <div class="year">2026</div>
-                <div class="details">
-                    <strong>Álvarez-Álvarez, A.</strong> "From hero to villain, and vice versa: media polarization and discursive dynamics in X regarding the #ObjetivoNadal case". <em>Infonomy</em>[cite: 31].
-                </div>
+            <div class="pub-item">
+                <strong>Álvarez-Álvarez, A.</strong> (2026). "From hero to villain, and vice versa: media polarization and discursive dynamics in X regarding the #ObjetivoNadal case", <em>Infonomy</em>[cite: 31].
             </div>
 
-            <div class="item">
-                <div class="year">2025</div>
-                <div class="details">
-                    <strong>Álvarez-Álvarez, A.</strong> "Sport and polarization on X: Sentiment analysis, emotions and positioning applied to the #ObjetivoNadal interview". <em>Estudios sobre el Mensaje Periodístico</em>[cite: 33].
-                </div>
+            <div class="pub-item">
+                <strong>Álvarez-Álvarez, A.</strong> (2025). "Sport and polarization on X: Sentiment analysis, emotions and positioning applied to the #ObjetivoNadal interview", <em>Estudios sobre el Mensaje Periodístico</em>[cite: 33].
             </div>
         </section>
 
         <section id="teaching">
-            <h2>Teaching</h2>
-            <div class="item">
-                <div class="year">2020—25</div>
-                <div class="details">
-                    <strong>Lecturer at URJC</strong>. He impartido asignaturas de Publicidad, Marketing y RRHH a más de 10 promociones con una valoración media de 4.45/5[cite: 47, 48, 49, 52, 55].
-                </div>
-            </div>
-            <div class="item">
-                <div class="year">Supervision</div>
-                <div class="details">
-                    Dirección de 47 Trabajos de Fin de Grado (TFG) en Periodismo y Comunicación[cite: 57].
-                </div>
-            </div>
+            <h2>Teaching & Supervision</h2>
+            <p>
+                I have over five years of university teaching experience at Universidad Rey Juan Carlos[cite: 10, 18]. My average teaching evaluation is <strong>4.45/5</strong>[cite: 49, 52, 55].
+            </p>
+            <p>
+                To date, I have supervised 47 Bachelor's theses in journalism, marketing, and communication programs[cite: 57].
+            </p>
         </section>
-
-    </div>
+        
+        <section id="service">
+            <h2>Service</h2>
+            <p>
+                I have served as a co-organizer for several international scientific events, including the International Conference on Clear Communication (COMCLARA) in 2024 and 2025[cite: 38, 42].
+            </p>
+        </section>
+    </main>
 
 </body>
 </html>
