@@ -3,41 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alberto Álvarez Álvarez</title>
+    <title>Alberto Álvarez Álvarez | Researcher</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        /* COLOR AZUL PIZARRA SUAVE REFORZADO */
+        /* COLOR AZUL PIZARRA SUAVE DEFINITIVO */
         :root {
-            --bg-color: #2b303b !important; 
+            --bg-color: #23272d; 
             --text-primary: #ffffff;
             --text-muted: #a9b0bd;
+            --highlight-color: #e3b04b; /* ORO SUAVE PARA RESALTAR PUESTO */
             --accent: #7fa1c3;
-            --card-bg: rgba(255, 255, 255, 0.03);
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
 
-        body {
-            font-family: 'Inter', sans-serif;
+        html, body {
             background-color: var(--bg-color) !important;
             color: var(--text-primary);
-            line-height: 1.6;
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
             display: flex;
             justify-content: center;
-            padding: 60px 20px;
+            padding: 80px 20px;
         }
 
         .main-layout { 
-            max-width: 1150px; 
+            max-width: 1100px; 
             width: 100%; 
             display: grid;
-            grid-template-columns: 280px 1fr; 
-            gap: 50px;
+            grid-template-columns: 300px 1fr; 
+            gap: 60px;
         }
 
-        /* COLUMNA IZQUIERDA: SIDEBAR */
+        /* SIDEBAR IZQUIERDO */
         .sidebar { position: sticky; top: 60px; height: fit-content; }
 
         .profile-img {
@@ -49,74 +53,82 @@
             border: 3px solid rgba(255,255,255,0.1);
         }
 
-        .sidebar h1 { font-size: 1.8rem; font-weight: 700; margin-bottom: 8px; line-height: 1.2; }
-        .sidebar .role { color: var(--text-muted); font-size: 1rem; margin-bottom: 20px; display: block; }
+        .sidebar h1 { font-size: 2rem; font-weight: 700; margin-bottom: 10px; line-height: 1.1; }
         
-        .social-icons { display: flex; gap: 15px; font-size: 1.5rem; margin-top: 20px; }
+        /* PUESTO DE TRABAJO RESALTADO */
+        .highlight-job { 
+            color: var(--highlight-color); 
+            font-weight: 600; 
+            font-size: 1.1rem; 
+            display: block; 
+            margin-bottom: 5px;
+        }
+        
+        .uni-link { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 30px; display: block; }
+
+        .social-icons { display: flex; gap: 20px; font-size: 1.8rem; margin-top: 20px; }
         .social-icons a { color: var(--text-primary); text-decoration: none; transition: 0.3s; opacity: 0.8; }
-        .social-icons a:hover { opacity: 1; color: var(--accent); }
+        .social-icons a:hover { opacity: 1; color: var(--highlight-color); }
 
-        /* COLUMNA DERECHA: CONTENIDO */
-        h2 { font-size: 1.5rem; font-weight: 700; margin-bottom: 25px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px; }
+        /* CONTENIDO DERECHO */
+        .bio-intro { font-size: 1.2rem; margin-bottom: 50px; color: #eef1f5; line-height: 1.8; }
 
-        .bio-section { font-size: 1.1rem; color: #eef1f5; margin-bottom: 50px; }
+        h2 { font-size: 1.6rem; font-weight: 700; margin-bottom: 30px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px; }
 
-        .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 60px; }
+        .grid-info { display: grid; grid-template-columns: 1fr 1.2fr; gap: 40px; margin-bottom: 60px; }
+
+        .interests-list li { margin-bottom: 12px; padding-left: 20px; position: relative; list-style: none; }
+        .interests-list li::before { content: "•"; position: absolute; left: 0; color: var(--highlight-color); }
+
+        .edu-item { display: flex; gap: 15px; margin-bottom: 25px; }
+        .edu-icon { color: var(--text-muted); font-size: 1.1rem; margin-top: 5px; }
+        .edu-content .degree { font-weight: 600; display: block; font-size: 1rem; }
+        .edu-content .inst { font-size: 0.9rem; color: var(--text-muted); display: block; }
+
+        /* PUBLICACIONES CON MINIATURAS */
+        .pub-list { display: flex; flex-direction: column; gap: 25px; }
         
-        /* Listas de Intereses y Educación */
-        ul { list-style: none; }
-        .interests li { margin-bottom: 10px; padding-left: 20px; position: relative; }
-        .interests li::before { content: "•"; position: absolute; left: 0; color: var(--accent); }
-
-        .edu-item { display: flex; gap: 15px; margin-bottom: 20px; }
-        .edu-icon { color: var(--text-muted); font-size: 1rem; margin-top: 4px; }
-        .degree { font-weight: 600; display: block; font-size: 0.95rem; }
-        .inst { font-size: 0.85rem; color: var(--text-muted); display: block; }
-
-        /* SECCIÓN PUBLICACIONES CON MINIATURAS */
-        .pub-container { display: flex; flex-direction: column; gap: 20px; }
-        
-        .pub-card {
+        .pub-item {
             display: grid;
-            grid-template-columns: 100px 1fr;
+            grid-template-columns: 110px 1fr;
             gap: 20px;
-            background: var(--card-bg);
+            background: rgba(255,255,255,0.03);
             padding: 15px;
             border-radius: 8px;
-            transition: transform 0.2s;
+            transition: 0.3s;
         }
-        .pub-card:hover { transform: translateX(5px); background: rgba(255,255,255,0.05); }
+        .pub-item:hover { background: rgba(255,255,255,0.06); transform: translateX(5px); }
 
-        .pub-thumb {
-            width: 100px;
-            height: 130px;
-            background: #3e4451;
+        .pub-img {
+            width: 110px;
+            height: 145px;
+            background: #3e4451; /* Color de relleno si no hay imagen */
             border-radius: 4px;
             object-fit: cover;
             border: 1px solid rgba(255,255,255,0.1);
         }
 
-        .pub-info .year { font-size: 0.85rem; color: var(--accent); font-weight: 600; }
-        .pub-info .title { font-weight: 600; display: block; margin: 5px 0; font-size: 1rem; }
-        .pub-info .journal { font-style: italic; color: var(--text-muted); font-size: 0.9rem; }
+        .pub-year { font-size: 0.85rem; color: var(--highlight-color); font-weight: 700; }
+        .pub-title { display: block; font-weight: 600; margin: 5px 0; font-size: 1.05rem; }
+        .pub-journal { color: var(--text-muted); font-style: italic; font-size: 0.9rem; }
 
-        @media (max-width: 850px) {
+        @media (max-width: 900px) {
             .main-layout { grid-template-columns: 1fr; }
             .sidebar { position: static; text-align: center; }
             .social-icons { justify-content: center; }
-            .info-grid { grid-template-columns: 1fr; }
+            .grid-info { grid-template-columns: 1fr; }
         }
     </style>
 </head>
-<body style="background-color: #2b303b !important;">
+<body>
 
     <div class="main-layout">
         
         <aside class="sidebar">
             <img src="avatar.jpg" alt="Alberto Álvarez Álvarez" class="profile-img">
             <h1>Alberto Álvarez Álvarez</h1>
-            <span class="role">PhD Communication</span>
-            <p style="font-size: 0.9rem; color: var(--text-muted);">Universidad Rey Juan Carlos / VU Amsterdam [cite: 12, 14]</p>
+            <span class="highlight-job">PhD Communication</span>
+            <span class="uni-link">Lecturer and Researcher at URJC / VU Amsterdam</span>
             
             <div class="social-icons">
                 <a href="mailto:Alberto.alvarez.a@me.com"><i class="fa-solid fa-envelope"></i></a>
@@ -126,69 +138,69 @@
         </aside>
 
         <main>
-            <section class="bio-section">
-                <p>Scholar specializing in digital media, social media platforms and online polarization. [cite: 8]</p>
-                <p>My research focuses on how digital platforms shape public discourse and media narratives. [cite: 9]</p>
+            <section class="bio-intro">
+                <p>Scholar specializing in digital media, social media platforms and online polarization[cite: 8].</p>
+                <p>My research focuses on how digital platforms shape public discourse and media narratives[cite: 9].</p>
             </section>
 
-            <div class="info-grid">
-                <section class="interests">
+            <div class="grid-info">
+                <section>
                     <h2>Interests</h2>
-                    <ul>
-                        <li>Mass Media & Social Media [cite: 8]</li>
-                        <li>Sport & Identity [cite: 13]</li>
-                        <li>Polarization Analysis [cite: 8]</li>
+                    <ul class="interests-list">
+                        <li>Digital Media & Social Platforms [cite: 8]</li>
+                        <li>Online Polarization [cite: 8]</li>
                         <li>Sentiment Analysis [cite: 9]</li>
+                        <li>Digital Discourse Analysis [cite: 9]</li>
                     </ul>
                 </section>
 
-                <section class="education">
+                <section>
                     <h2>Education</h2>
                     <div class="edu-item">
                         <i class="fa-solid fa-graduation-cap edu-icon"></i>
                         <div class="edu-content">
-                            <span class="degree">PhD in Communication, 2023-26 [cite: 12]</span>
-                            <span class="inst">URJC / VU Amsterdam [cite: 14]</span>
+                            <span class="degree">PhD in Communication, 2023—26 </span>
+                            <span class="inst">Universidad Rey Juan Carlos / VU Amsterdam </span>
                         </div>
                     </div>
                     <div class="edu-item">
                         <i class="fa-solid fa-graduation-cap edu-icon"></i>
                         <div class="edu-content">
-                            <span class="degree">BA Journalism, 2016 [cite: 15]</span>
-                            <span class="inst">UDIMA</span>
+                            <span class="degree">BA in Journalism, 2016 [cite: 15]</span>
+                            <span class="inst">UDIMA [cite: 15]</span>
                         </div>
                     </div>
                 </section>
             </div>
 
-            <section class="publications">
+            <section>
                 <h2>Selected Publications</h2>
-                <div class="pub-container">
+                <div class="pub-list">
                     
-                    <div class="pub-card">
-                        <img src="thumb1.jpg" class="pub-thumb" alt="Paper thumbnail">
+                    <div class="pub-item">
+                        <img src="pub1.jpg" class="pub-img" alt="Paper thumbnail">
                         <div class="pub-info">
-                            <span class="year">2026</span>
-                            <span class="title">From hero to villain: media polarization regarding the #ObjetivoNadal case [cite: 31]</span>
-                            <span class="journal">Infonomy [cite: 31]</span>
+                            <span class="pub-year">2026</span>
+                            <span class="pub-title">From hero to villain, and vice versa: media polarization in X regarding the #ObjetivoNadal case [cite: 31]</span>
+                            <span class="pub-journal">Infonomy [cite: 31]</span>
                         </div>
                     </div>
 
-                    <div class="pub-card">
-                        <img src="thumb2.jpg" class="pub-thumb" alt="Paper thumbnail">
+                    <div class="pub-item">
+                        <img src="pub2.jpg" class="pub-img" alt="Paper thumbnail">
                         <div class="pub-info">
-                            <span class="year">2026</span>
-                            <span class="title">Digital media and gender equality in sport: Rafael Nadal's interview [cite: 32]</span>
-                            <span class="journal">Brazilian Journalism Research [cite: 32]</span>
+                            <span class="pub-year">2026</span>
+                            <span class="pub-title">Digital media and gender equality in sport: Rafael Nadal's interview [cite: 32]</span>
+                            <span class="pub-journal">Brazilian Journalism Research [cite: 32]</span>
                         </div>
                     </div>
 
-                    <div class="pub-card">
-                        <img src="thumb3.jpg" class="pub-thumb" alt="Paper thumbnail">
+                    <div class="pub-item">
+                        <img src="pub3.jpg" class="pub-img" alt="Paper thumbnail">
                         <div class="pub-info">
-                            <span class="year">2025</span>
-                            <span class="title">Sport and polarization on X: Sentiment analysis applied to #ObjetivoNadal [cite: 33]</span>
-                            <span class="journal">Estud. mensaje periodís. [cite: 33, 34]</span>
+                            <span class="pub-year">2025</span>
+                            <span class="pub-title">Sport and polarization on X: Sentiment analysis applied to #ObjetivoNadal [cite: 33]</span>
+                            <span class="pub-journal">Estudios sobre el Mensaje Periodístico [cite: 33]</span>
                         </div>
                     </div>
 
