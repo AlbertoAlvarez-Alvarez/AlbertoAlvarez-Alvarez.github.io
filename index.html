@@ -8,220 +8,193 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
+        /* COLOR AZUL PIZARRA SUAVE REFORZADO */
         :root {
-            /* Azul pizarra muy suave y elegante */
-            --bg-color: #23272d; 
-            --text-color: #ffffff;
+            --bg-color: #2b303b !important; 
+            --text-primary: #ffffff;
             --text-muted: #a9b0bd;
-            --accent-hover: #7fa1c3;
+            --accent: #7fa1c3;
+            --card-bg: rgba(255, 255, 255, 0.03);
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
 
         body {
             font-family: 'Inter', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
+            background-color: var(--bg-color) !important;
+            color: var(--text-primary);
             line-height: 1.6;
             display: flex;
             justify-content: center;
-            padding: 80px 20px;
+            padding: 60px 20px;
         }
 
-        /* Contenedor principal en dos columnas */
         .main-layout { 
-            max-width: 1100px; 
+            max-width: 1150px; 
             width: 100%; 
             display: grid;
-            grid-template-columns: 320px 1fr; /* Columna izquierda fija para el perfil */
-            gap: 60px;
+            grid-template-columns: 280px 1fr; 
+            gap: 50px;
         }
 
-        /* COLUMNA IZQUIERDA: PERFIL */
-        .sidebar {
-            text-align: left;
-        }
+        /* COLUMNA IZQUIERDA: SIDEBAR */
+        .sidebar { position: sticky; top: 60px; height: fit-content; }
 
         .profile-img {
-            width: 240px;
-            height: 240px;
+            width: 100%;
+            aspect-ratio: 1/1;
             border-radius: 50%;
             object-fit: cover;
             margin-bottom: 25px;
-            border: 4px solid rgba(255,255,255,0.05);
-            background-color: #3e4451;
+            border: 3px solid rgba(255,255,255,0.1);
         }
 
-        .sidebar h1 {
-            font-size: 2.2rem;
-            font-weight: 700;
-            margin-bottom: 10px;
-            line-height: 1.1;
-        }
-
-        .sidebar .subtitle {
-            font-size: 1.1rem;
-            color: var(--text-muted);
-            margin-bottom: 5px;
-        }
-
-        .sidebar .uni {
-            font-size: 1rem;
-            color: var(--text-muted);
-            margin-bottom: 35px;
-            display: block;
-        }
-
-        .social-icons {
-            display: flex;
-            gap: 20px;
-            font-size: 1.8rem;
-        }
-
-        .social-icons a {
-            color: var(--text-color);
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .social-icons a:hover { 
-            color: var(--accent-hover);
-            transform: translateY(-3px);
-        }
+        .sidebar h1 { font-size: 1.8rem; font-weight: 700; margin-bottom: 8px; line-height: 1.2; }
+        .sidebar .role { color: var(--text-muted); font-size: 1rem; margin-bottom: 20px; display: block; }
+        
+        .social-icons { display: flex; gap: 15px; font-size: 1.5rem; margin-top: 20px; }
+        .social-icons a { color: var(--text-primary); text-decoration: none; transition: 0.3s; opacity: 0.8; }
+        .social-icons a:hover { opacity: 1; color: var(--accent); }
 
         /* COLUMNA DERECHA: CONTENIDO */
-        .content {
-            padding-top: 10px;
-        }
+        h2 { font-size: 1.5rem; font-weight: 700; margin-bottom: 25px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px; }
 
-        .bio-text {
-            font-size: 1.15rem;
-            margin-bottom: 50px;
-            color: #eef1f5;
-        }
+        .bio-section { font-size: 1.1rem; color: #eef1f5; margin-bottom: 50px; }
 
-        .grid-info {
+        .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 60px; }
+        
+        /* Listas de Intereses y Educación */
+        ul { list-style: none; }
+        .interests li { margin-bottom: 10px; padding-left: 20px; position: relative; }
+        .interests li::before { content: "•"; position: absolute; left: 0; color: var(--accent); }
+
+        .edu-item { display: flex; gap: 15px; margin-bottom: 20px; }
+        .edu-icon { color: var(--text-muted); font-size: 1rem; margin-top: 4px; }
+        .degree { font-weight: 600; display: block; font-size: 0.95rem; }
+        .inst { font-size: 0.85rem; color: var(--text-muted); display: block; }
+
+        /* SECCIÓN PUBLICACIONES CON MINIATURAS */
+        .pub-container { display: flex; flex-direction: column; gap: 20px; }
+        
+        .pub-card {
             display: grid;
-            grid-template-columns: 1fr 1.2fr;
-            gap: 40px;
+            grid-template-columns: 100px 1fr;
+            gap: 20px;
+            background: var(--card-bg);
+            padding: 15px;
+            border-radius: 8px;
+            transition: transform 0.2s;
+        }
+        .pub-card:hover { transform: translateX(5px); background: rgba(255,255,255,0.05); }
+
+        .pub-thumb {
+            width: 100px;
+            height: 130px;
+            background: #3e4451;
+            border-radius: 4px;
+            object-fit: cover;
+            border: 1px solid rgba(255,255,255,0.1);
         }
 
-        h2 {
-            font-size: 1.6rem;
-            font-weight: 700;
-            margin-bottom: 25px;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-            padding-bottom: 10px;
-        }
+        .pub-info .year { font-size: 0.85rem; color: var(--accent); font-weight: 600; }
+        .pub-info .title { font-weight: 600; display: block; margin: 5px 0; font-size: 1rem; }
+        .pub-info .journal { font-style: italic; color: var(--text-muted); font-size: 0.9rem; }
 
-        .interests-list { list-style: none; }
-        .interests-list li {
-            margin-bottom: 12px;
-            padding-left: 20px;
-            position: relative;
-        }
-        .interests-list li::before {
-            content: "•";
-            position: absolute;
-            left: 0;
-            color: var(--text-muted);
-        }
-
-        .edu-list { list-style: none; }
-        .edu-item {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 20px;
-        }
-        .edu-icon { font-size: 1.1rem; color: var(--text-muted); margin-top: 5px; }
-        .edu-content .degree { font-weight: 600; display: block; }
-        .edu-content .institution { font-size: 0.9rem; color: var(--text-muted); display: block; }
-
-        /* Adaptación móvil */
-        @media (max-width: 900px) {
+        @media (max-width: 850px) {
             .main-layout { grid-template-columns: 1fr; }
-            .sidebar { text-align: center; }
+            .sidebar { position: static; text-align: center; }
             .social-icons { justify-content: center; }
-            .grid-info { grid-template-columns: 1fr; }
+            .info-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
-<body>
+<body style="background-color: #2b303b !important;">
 
     <div class="main-layout">
         
         <aside class="sidebar">
             <img src="avatar.jpg" alt="Alberto Álvarez Álvarez" class="profile-img">
             <h1>Alberto Álvarez Álvarez</h1>
-            <p class="subtitle">PhD Communication</p>
-            <span class="uni">Lecturer and Researcher at Universidad Rey Juan Carlos / VU Amsterdam</span>
+            <span class="role">PhD Communication</span>
+            <p style="font-size: 0.9rem; color: var(--text-muted);">Universidad Rey Juan Carlos / VU Amsterdam [cite: 12, 14]</p>
             
             <div class="social-icons">
-                <a href="mailto:Alberto.alvarez.a@me.com" title="Email"><i class="fa-solid fa-envelope"></i></a>
-                <a href="https://scholar.google.es/citations?user=n-RM3S4AAAAJ&hl=es" target="_blank" title="Google Scholar"><i class="fa-solid fa-graduation-cap"></i></a>
-                <a href="https://orcid.org/0009-0005-4127-1223" target="_blank" title="ORCID"><i class="fa-brands fa-orcid"></i></a>
+                <a href="mailto:Alberto.alvarez.a@me.com"><i class="fa-solid fa-envelope"></i></a>
+                <a href="https://scholar.google.es/citations?user=n-RM3S4AAAAJ&hl=es" target="_blank"><i class="fa-solid fa-graduation-cap"></i></a>
+                <a href="https://orcid.org/0009-0005-4127-1223" target="_blank"><i class="fa-brands fa-orcid"></i></a>
             </div>
         </aside>
 
-        <main class="content">
-            <section class="bio-text">
-                <p>
-                    Communication scholar specializing in digital media, social media platforms and online polarization. 
-                    My research focuses on how digital platforms shape public discourse and media narratives, using methods such as sentiment analysis and digital discourse analysis. 
-                </p>
-                <br>
-                <p>
-                    I have over five years of university teaching experience and have supervised more than 40 Bachelor's theses in journalism, marketing and communication programs[cite: 10].
-                </p>
+        <main>
+            <section class="bio-section">
+                <p>Scholar specializing in digital media, social media platforms and online polarization. [cite: 8]</p>
+                <p>My research focuses on how digital platforms shape public discourse and media narratives. [cite: 9]</p>
             </section>
 
-            <div class="grid-info">
-                <section>
+            <div class="info-grid">
+                <section class="interests">
                     <h2>Interests</h2>
-                    <ul class="interests-list">
-                        <li>Digital Platforms & Media [cite: 8]</li>
-                        <li>Social Media Narratives [cite: 9]</li>
-                        <li>Online Polarization [cite: 8]</li>
+                    <ul>
+                        <li>Mass Media & Social Media [cite: 8]</li>
+                        <li>Sport & Identity [cite: 13]</li>
+                        <li>Polarization Analysis [cite: 8]</li>
                         <li>Sentiment Analysis [cite: 9]</li>
                     </ul>
                 </section>
 
-                <section>
+                <section class="education">
                     <h2>Education</h2>
-                    <ul class="edu-list">
-                        <li class="edu-item">
-                            <div class="edu-icon"><i class="fa-solid fa-graduation-cap"></i></div>
-                            <div class="edu-content">
-                                <span class="degree">PhD in Communication, 2023—26 [cite: 12]</span>
-                                <span class="institution">Universidad Rey Juan Carlos (Madrid) [cite: 12]</span>
-                            </div>
-                        </li>
-                        <li class="edu-item">
-                            <div class="edu-icon"><i class="fa-solid fa-graduation-cap"></i></div>
-                            <div class="edu-content">
-                                <span class="degree">International Doctorate, 2026 [cite: 14]</span>
-                                <span class="institution">Vrije Universiteit Amsterdam [cite: 14]</span>
-                            </div>
-                        </li>
-                        <li class="edu-item">
-                            <div class="edu-icon"><i class="fa-solid fa-graduation-cap"></i></div>
-                            <div class="edu-content">
-                                <span class="degree">B.S. Journalism, 2016 [cite: 15]</span>
-                                <span class="institution">UDIMA [cite: 15]</span>
-                            </div>
-                        </li>
-                        <li class="edu-item">
-                            <div class="edu-icon"><i class="fa-solid fa-graduation-cap"></i></div>
-                            <div class="edu-content">
-                                <span class="degree">B.S. Advertising and PR, 2014 [cite: 16]</span>
-                                <span class="institution">Universidad de Valladolid [cite: 16]</span>
-                            </div>
-                        </li>
-                    </ul>
+                    <div class="edu-item">
+                        <i class="fa-solid fa-graduation-cap edu-icon"></i>
+                        <div class="edu-content">
+                            <span class="degree">PhD in Communication, 2023-26 [cite: 12]</span>
+                            <span class="inst">URJC / VU Amsterdam [cite: 14]</span>
+                        </div>
+                    </div>
+                    <div class="edu-item">
+                        <i class="fa-solid fa-graduation-cap edu-icon"></i>
+                        <div class="edu-content">
+                            <span class="degree">BA Journalism, 2016 [cite: 15]</span>
+                            <span class="inst">UDIMA</span>
+                        </div>
+                    </div>
                 </section>
             </div>
-        </main>
 
+            <section class="publications">
+                <h2>Selected Publications</h2>
+                <div class="pub-container">
+                    
+                    <div class="pub-card">
+                        <img src="thumb1.jpg" class="pub-thumb" alt="Paper thumbnail">
+                        <div class="pub-info">
+                            <span class="year">2026</span>
+                            <span class="title">From hero to villain: media polarization regarding the #ObjetivoNadal case [cite: 31]</span>
+                            <span class="journal">Infonomy [cite: 31]</span>
+                        </div>
+                    </div>
+
+                    <div class="pub-card">
+                        <img src="thumb2.jpg" class="pub-thumb" alt="Paper thumbnail">
+                        <div class="pub-info">
+                            <span class="year">2026</span>
+                            <span class="title">Digital media and gender equality in sport: Rafael Nadal's interview [cite: 32]</span>
+                            <span class="journal">Brazilian Journalism Research [cite: 32]</span>
+                        </div>
+                    </div>
+
+                    <div class="pub-card">
+                        <img src="thumb3.jpg" class="pub-thumb" alt="Paper thumbnail">
+                        <div class="pub-info">
+                            <span class="year">2025</span>
+                            <span class="title">Sport and polarization on X: Sentiment analysis applied to #ObjetivoNadal [cite: 33]</span>
+                            <span class="journal">Estud. mensaje periodís. [cite: 33, 34]</span>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+        </main>
     </div>
 
 </body>
