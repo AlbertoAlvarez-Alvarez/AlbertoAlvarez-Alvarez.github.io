@@ -4,14 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alberto Álvarez Álvarez</title>
-    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
         :root {
-            --bg-color: #f7f7f7; /* Gris muy suave, como el de Felicia */
-            --sidebar-width: 300px;
-            --text-main: #1a1a1a;
-            --text-muted: #666;
-            --accent: #3b5998; /* Azul sutil para enlaces */
+            --bg-color: #1a1e23; /* Fondo oscuro exacto */
+            --text-color: #ffffff;
+            --text-muted: #a9b0bd;
+            --accent-color: #ffffff;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -19,179 +20,198 @@
         body {
             font-family: 'Inter', sans-serif;
             background-color: var(--bg-color);
-            color: var(--text-main);
+            color: var(--text-color);
+            line-height: 1.6;
             display: flex;
-            min-height: 100vh;
+            justify-content: center;
+            padding: 60px 20px;
         }
 
-        /* BARRA LATERAL FIJA (LEFT COLUMN) */
-        aside {
-            width: var(--sidebar-width);
-            height: 100vh;
-            position: fixed;
-            left: 0;
-            top: 0;
-            padding: 60px 40px;
-            display: flex;
-            flex-direction: column;
-            border-right: 1px solid #e5e5e5;
+        .wrapper { max-width: 900px; width: 100%; }
+
+        /* SECCIÓN PERFIL (Captura 2) */
+        .profile-section {
+            text-align: center;
+            margin-bottom: 60px;
         }
 
-        aside h1 {
-            font-family: 'Crimson Pro', serif;
-            font-size: 1.8rem;
-            line-height: 1.2;
+        .profile-img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 25px;
+            border: 3px solid rgba(255,255,255,0.1);
+        }
+
+        .profile-section h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
             margin-bottom: 10px;
-            font-weight: 600;
         }
 
-        aside .title {
-            font-size: 0.9rem;
+        .profile-section .subtitle {
+            font-size: 1.1rem;
             color: var(--text-muted);
-            margin-bottom: 40px;
-            line-height: 1.4;
+            margin-bottom: 5px;
         }
 
-        /* Menú de navegación vertical */
-        nav ul { list-style: none; }
-        nav ul li { margin-bottom: 15px; }
-        nav ul li a {
+        .profile-section .uni {
+            font-size: 1rem;
+            color: var(--text-muted);
+            margin-bottom: 30px;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            font-size: 1.8rem;
+        }
+
+        .social-icons a {
+            color: var(--text-color);
             text-decoration: none;
-            color: var(--text-main);
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            font-weight: 600;
-            transition: color 0.3s;
-        }
-        nav ul li a:hover { color: var(--accent); }
-
-        /* CONTENIDO SCROLLABLE (RIGHT COLUMN) */
-        main {
-            margin-left: var(--sidebar-width);
-            width: calc(100% - var(--sidebar-width));
-            padding: 60px 10%;
+            opacity: 0.8;
+            transition: opacity 0.3s;
         }
 
-        section {
-            max-width: 750px;
-            margin-bottom: 80px;
+        .social-icons a:hover { opacity: 1; }
+
+        /* SECCIÓN GRID INTERESES Y EDUCACIÓN (Captura 1) */
+        .grid-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: 40px;
         }
 
         h2 {
-            font-family: 'Crimson Pro', serif;
-            font-size: 1.5rem;
+            font-size: 1.8rem;
+            font-weight: 700;
             margin-bottom: 30px;
-            padding-bottom: 10px;
-            border-bottom: 1px solid #e5e5e5;
         }
 
-        p {
-            font-size: 1rem;
-            line-height: 1.8;
-            margin-bottom: 20px;
-            color: #333;
+        /* Intereses */
+        .interests-list {
+            list-style: none;
         }
 
-        /* Estilo de las publicaciones */
-        .pub-item {
+        .interests-list li {
+            margin-bottom: 12px;
+            padding-left: 20px;
+            position: relative;
+            font-size: 1.05rem;
+        }
+
+        .interests-list li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--text-color);
+        }
+
+        /* Educación */
+        .edu-list {
+            list-style: none;
+        }
+
+        .edu-item {
+            display: flex;
+            gap: 15px;
             margin-bottom: 25px;
-            font-size: 0.95rem;
-            line-height: 1.6;
         }
 
-        .pub-item strong { font-weight: 600; }
-        .pub-item em { font-family: 'Crimson Pro', serif; font-size: 1.1rem; }
-
-        /* Imagen de perfil opcional en el sidebar */
-        .profile-img {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin-bottom: 30px;
-            filter: grayscale(100%);
+        .edu-icon {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            padding-top: 5px;
         }
 
-        /* Adaptación a móviles */
-        @media (max-width: 900px) {
-            body { flex-direction: column; }
-            aside {
-                width: 100%;
-                height: auto;
-                position: relative;
-                padding: 40px 20px;
-                border-right: none;
-                border-bottom: 1px solid #e5e5e5;
-            }
-            main {
-                width: 100%;
-                margin-left: 0;
-                padding: 40px 20px;
-            }
+        .edu-content .degree {
+            font-weight: 600;
+            font-size: 1rem;
+            display: block;
+        }
+
+        .edu-content .institution {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            display: block;
+        }
+
+        /* Móvil */
+        @media (max-width: 768px) {
+            .grid-container { grid-template-columns: 1fr; }
+            .profile-section h1 { font-size: 2rem; }
         }
     </style>
 </head>
 <body>
 
-    <aside>
-        <h1>Alberto Álvarez Álvarez</h1>
-        <p class="title">Communication scholar specializing in digital media, social media platforms and online polarization.</p>
+    <div class="wrapper">
         
-        <nav>
-            <ul>
-                <li><a href="#about">About</a></li>
-                <li><a href="#publications">Publications</a></li>
-                <li><a href="#teaching">Teaching</a></li>
-                <li><a href="mailto:Alberto.alvarez.a@me.com">Contact</a></li>
-            </ul>
-        </nav>
-    </aside>
-
-    <main>
-        <section id="about">
-            <h2>About Me</h2>
-            <p>
-                My research focuses on how digital platforms shape public discourse and media narratives, using methods such as sentiment analysis and digital discourse analysis[cite: 9]. 
-            </p>
-            <p>
-                I am currently a Ph.D. candidate at <strong>Universidad Rey Juan Carlos</strong> and the <strong>Vrije Universiteit Amsterdam</strong>, where I investigate polarization in sports environments[cite: 12, 13, 14].
-            </p>
-        </section>
-
-        <section id="publications">
-            <h2>Selected Publications</h2>
+        <section class="profile-section">
+            <img src="avatar.jpg" alt="Alberto Álvarez" class="profile-img">
+            <h1>Alberto Álvarez Álvarez</h1>
+            <p class="subtitle">PhD Candidate in Communication</p>
+            <p class="uni">Universidad Rey Juan Carlos / VU Amsterdam</p>
             
-            <div class="pub-item">
-                <strong>Álvarez-Álvarez, A.</strong> & Kerkhof, P. (2026). "Anti-racism football campaigns in Spain and England: public discourse and polarization on X"[cite: 28].
-            </div>
-
-            <div class="pub-item">
-                <strong>Álvarez-Álvarez, A.</strong> (2026). "From hero to villain, and vice versa: media polarization and discursive dynamics in X regarding the #ObjetivoNadal case", <em>Infonomy</em>[cite: 31].
-            </div>
-
-            <div class="pub-item">
-                <strong>Álvarez-Álvarez, A.</strong> (2025). "Sport and polarization on X: Sentiment analysis, emotions and positioning applied to the #ObjetivoNadal interview", <em>Estudios sobre el Mensaje Periodístico</em>[cite: 33].
-            </div>
+            <div class="social-icons">
+                <a href="mailto:Alberto.alvarez.a@me.com"><i class="fa-solid fa-envelope"></i></a>
+                <a href="https://orcid.org/0009-0005-4127-1223" target="_blank"><i class="fa-brands fa-orcid"></i></a>
+                </div>
         </section>
 
-        <section id="teaching">
-            <h2>Teaching & Supervision</h2>
-            <p>
-                I have over five years of university teaching experience at Universidad Rey Juan Carlos[cite: 10, 18]. My average teaching evaluation is <strong>4.45/5</strong>[cite: 49, 52, 55].
-            </p>
-            <p>
-                To date, I have supervised 47 Bachelor's theses in journalism, marketing, and communication programs[cite: 57].
-            </p>
-        </section>
-        
-        <section id="service">
-            <h2>Service</h2>
-            <p>
-                I have served as a co-organizer for several international scientific events, including the International Conference on Clear Communication (COMCLARA) in 2024 and 2025[cite: 38, 42].
-            </p>
-        </section>
-    </main>
+        <div class="grid-container">
+            
+            <section>
+                <h2>Interests</h2>
+                <ul class="interests-list">
+                    <li>Digital Media & Social Platforms [cite: 8]</li>
+                    <li>Online Polarization [cite: 8]</li>
+                    <li>Sentiment Analysis [cite: 9]</li>
+                    <li>Digital Discourse Analysis [cite: 9]</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Education</h2>
+                <ul class="edu-list">
+                    <li class="edu-item">
+                        <div class="edu-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+                        <div class="edu-content">
+                            <span class="degree">PhD in Communication, since 2023 [cite: 12]</span>
+                            <span class="institution">Universidad Rey Juan Carlos (Madrid) [cite: 12]</span>
+                        </div>
+                    </li>
+                    <li class="edu-item">
+                        <div class="edu-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+                        <div class="edu-content">
+                            <span class="degree">International Doctorate, 2026 [cite: 14]</span>
+                            <span class="institution">Vrije Universiteit Amsterdam [cite: 14]</span>
+                        </div>
+                    </li>
+                    <li class="edu-item">
+                        <div class="edu-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+                        <div class="edu-content">
+                            <span class="degree">BA in Journalism, 2016 [cite: 15]</span>
+                            <span class="institution">UDIMA [cite: 15]</span>
+                        </div>
+                    </li>
+                    <li class="edu-item">
+                        <div class="edu-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+                        <div class="edu-content">
+                            <span class="degree">BA in Advertising and PR, 2014 [cite: 16]</span>
+                            <span class="institution">Universidad de Valladolid [cite: 16]</span>
+                        </div>
+                    </li>
+                </ul>
+            </section>
+
+        </div>
+
+    </div>
 
 </body>
 </html>
