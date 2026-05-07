@@ -3,83 +3,184 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alberto Álvarez Álvarez | Communication Scholar</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <title>Alberto Álvarez Álvarez | Researcher</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* ESTILO INSPIRADO EN FELICIA LOECHERBACH */
+        :root {
+            --bg: #ffffff;
+            --text: #1a1a1a;
+            --light-text: #666666;
+            --border: #eeeeee;
+            --accent: #000000;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        /* Navegación superior minimalista */
+        nav {
+            padding: 40px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text);
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-left: 30px;
+            transition: opacity 0.2s;
+        }
+
+        nav a:hover { opacity: 0.6; }
+
+        .logo { font-weight: 600; font-size: 1.1rem; margin-left: 0; }
+
+        /* Layout de dos columnas */
+        .main-grid {
+            display: grid;
+            grid-template-columns: 320px 1fr;
+            gap: 80px;
+            margin-top: 40px;
+        }
+
+        /* Columna Izquierda: Perfil */
+        .sidebar { position: sticky; top: 40px; }
+
+        .profile-pic {
+            width: 100%;
+            aspect-ratio: 1/1;
+            background-color: #f0f0f0; /* Espacio para tu foto */
+            object-fit: cover;
+            border-radius: 2px;
+            margin-bottom: 25px;
+        }
+
+        .sidebar h1 { font-size: 1.6rem; font-weight: 600; letter-spacing: -0.02em; margin-bottom: 10px; }
+        .sidebar p { font-size: 0.95rem; color: var(--light-text); margin-bottom: 20px; }
+
+        .contact-info { border-top: 1px solid var(--border); padding-top: 20px; }
+        .contact-info a { 
+            display: block; 
+            color: var(--text); 
+            text-decoration: none; 
+            font-size: 0.85rem; 
+            margin-bottom: 8px;
+        }
+
+        /* Columna Derecha: Contenido */
+        .content-section { margin-bottom: 60px; }
+        h2 { 
+            font-size: 0.8rem; 
+            text-transform: uppercase; 
+            letter-spacing: 0.1em; 
+            color: var(--light-text); 
+            margin-bottom: 30px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 10px;
+        }
+
+        .bio { font-size: 1.05rem; margin-bottom: 40px; }
+
+        /* Publicaciones */
+        .pub-list { list-style: none; }
+        .pub-item { margin-bottom: 25px; font-size: 0.95rem; }
+        .pub-year { color: var(--light-text); font-weight: 500; margin-right: 10px; }
+        .pub-title { font-weight: 400; }
+        .pub-journal { font-style: italic; color: var(--light-text); }
+
+        footer { margin-top: 100px; padding-bottom: 50px; font-size: 0.8rem; color: var(--light-text); }
+
+        /* Responsive */
+        @media (max-width: 850px) {
+            .main-grid { grid-template-columns: 1fr; }
+            .sidebar { position: static; }
+            .container { padding: 0 20px; }
+        }
+    </style>
 </head>
 <body>
 
-    <nav class="navbar">
-        <div class="container">
-            <a href="#" class="nav-logo">Alberto Álvarez Álvarez</a>
-            <ul class="nav-links">
-                <li><a href="#about">About</a></li>
-                <li><a href="#publications">Publications</a></li>
-                <li><a href="#teaching">Teaching</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </div>
-    </nav>
-
-    <main class="container main-content">
-        <section id="about" class="sidebar">
-            <img src="tu-foto.jpg" alt="Alberto Álvarez" class="profile-img">
-            <h1>Alberto Álvarez Álvarez</h1>
-            <p class="subtitle">Communication scholar & Ph.D. Candidate</p>
-            <div class="bio-text">
-                <p>Especialista en medios digitales, redes sociales y polarización online[cite: 8]. Mi investigación analiza cómo las plataformas digitales moldean el discurso público[cite: 9].</p>
-                <p>Doctorando en la <strong>Universidad Rey Juan Carlos</strong> y la <strong>Vrije Universiteit Amsterdam</strong>[cite: 12, 14].</p>
+    <div class="container">
+        <nav>
+            <a href="/" class="logo">Alberto Álvarez Álvarez</a>
+            <div>
+                <a href="#about">About</a>
+                <a href="#publications">Publications</a>
+                <a href="#teaching">Teaching</a>
             </div>
-            <div class="social-links">
-                <a href="mailto:Alberto.alvarez.a@me.com">Email</a> | 
-                <a href="https://orcid.org/0009-0005-4127-1223" target="_blank">ORCID</a>
-            </div>
-        </section>
+        </nav>
 
-        <section class="content">
-            
-            <section id="news">
-                <h2>Noticias y Liderazgo</h2>
-                <ul>
-                    <li><strong>2025:</strong> Co-organizador de la III International Conference on Clear Communication – COMCLARA[cite: 38].</li>
-                    <li><strong>2025:</strong> Co-organizador de la II International Online Conference – High-Impact Research in Economics and Business[cite: 40].</li>
-                </ul>
-            </section>
-
-            <section id="publications">
-                <h2>Publicaciones Seleccionadas</h2>
-                <div class="pub-item">
-                    <span class="year">2026</span>
-                    <p><strong>Álvarez-Álvarez, A.</strong> "From hero to villain, and vice versa: media polarization and discursive dynamics in X regarding the #ObjetivoNadal case", <em>Infonomy</em>[cite: 31].</p>
+        <div class="main-grid">
+            <aside class="sidebar">
+                <img src="foto-perfil.jpg" alt="Alberto Álvarez" class="profile-pic">
+                <h1>Alberto Álvarez Álvarez</h1>
+                <p>PhD Candidate in Communication</p>
+                
+                <div class="contact-info">
+                    <a href="mailto:Alberto.alvarez.a@me.com">Email</a>
+                    <a href="https://orcid.org/0009-0005-4127-1223" target="_blank">ORCID</a>
                 </div>
-                <div class="pub-item">
-                    <span class="year">2026</span>
-                    <p><strong>Álvarez-Álvarez, A.</strong> "Digital media and gender equality in sport- an approach to polarization through the media coverage of Rafael Nadal's interview", <em>Brazilian Journalism Research</em>[cite: 32].</p>
-                </div>
-                <div class="pub-item">
-                    <span class="year">2025</span>
-                    <p><strong>Álvarez-Álvarez, A.</strong> "Sport and polarization on X: Sentiment analysis, emotions and positioning applied to the #ObjetivoNadal interview", <em>Estudios sobre el Mensaje Periodístico</em>[cite: 33].</p>
-                </div>
-            </section>
+            </aside>
 
-            <section id="teaching">
-                <h2>Docencia y Supervisión</h2>
-                <p>Más de cinco años de experiencia docente universitaria en la URJC[cite: 10, 18].</p>
-                <ul>
-                    <li>Profesor de Recursos Humanos e Internacionalización[cite: 47, 53].</li>
-                    <li>Supervisor de más de 47 Trabajos de Fin de Grado en Periodismo, Publicidad y Marketing[cite: 57].</li>
-                    <li>Media de evaluación docente: <strong>4.45/5</strong>[cite: 49, 52, 55].</li>
-                </ul>
-            </section>
+            <main>
+                <section id="about" class="content-section">
+                    <div class="bio">
+                        <p>Communication scholar specializing in digital media, social media platforms and online polarization[cite: 8].</p>
+                        <br>
+                        <p>My research focuses on how digital platforms shape public discourse and media narratives, with a specific interest in identity-based confrontation in sports[cite: 9, 13].</p>
+                        <br>
+                        <p>I am currently a Ph.D. candidate at <strong>Universidad Rey Juan Carlos</strong> (Madrid) and the <strong>Vrije Universiteit Amsterdam</strong>[cite: 12, 14].</p>
+                    </div>
+                </section>
 
-        </section>
-    </main>
+                <section id="publications" class="content-section">
+                    <h2>Selected Publications</h2>
+                    <div class="pub-list">
+                        <div class="pub-item">
+                            <span class="pub-year">2026</span>
+                            <span class="pub-title"><strong>Álvarez-Álvarez, A.</strong>, & Kerkhof, P. "Anti-racism football campaigns in Spain and England: public discourse and polarization on X"[cite: 28].</span>
+                        </div>
+                        <div class="pub-item">
+                            <span class="pub-year">2026</span>
+                            <span class="pub-title"><strong>Álvarez-Álvarez, A.</strong> "From hero to villain, and vice versa: media polarization and discursive dynamics in X regarding the #ObjetivoNadal case", <span class="pub-journal">Infonomy</span>[cite: 31].</span>
+                        </div>
+                        <div class="pub-item">
+                            <span class="pub-year">2026</span>
+                            <span class="pub-title"><strong>Álvarez-Álvarez, A.</strong> "Digital media and gender equality in sport: the media coverage of Rafael Nadal's interview", <span class="pub-journal">Brazilian Journalism Research</span>[cite: 32].</span>
+                        </div>
+                    </div>
+                </section>
 
-    <footer>
-        <div class="container">
-            <p>&copy; 2026 Alberto Álvarez Álvarez. Built with HTML/CSS.</p>
+                <section id="teaching" class="content-section">
+                    <h2>Teaching & Supervision</h2>
+                    <p style="font-size: 0.95rem;">
+                        Over five years of experience as a Lecturer at URJC[cite: 18]. I have supervised 47 Bachelor's theses in Journalism, Advertising, PR and Marketing[cite: 57].
+                    </p>
+                </section>
+
+                <footer>
+                    &copy; 2026 Alberto Álvarez Álvarez. Last updated: May 2026[cite: 3].
+                </footer>
+            </main>
         </div>
-    </footer>
+    </div>
 
 </body>
 </html>
